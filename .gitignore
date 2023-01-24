@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,intellij,macos,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,intellij,macos,windows
 
+### custom path ###
+.spring-framework-study/
+
 ### Eclipse ###
 .metadata
 bin/
