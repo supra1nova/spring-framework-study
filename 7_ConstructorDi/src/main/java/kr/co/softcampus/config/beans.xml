@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+ 	   
+ 	   <bean id="obj1" class="kr.co.softcampus.beans.TestBean" lazy-init="true" />
+ 	   
+ 	   <!-- constructor-args 에 type 명시하지 않을시 String->double->int 우선순위 가진다 -->
+ 	   <bean id="obj2" class="kr.co.softcampus.beans.TestBean" lazy-init="true">
+ 	   		<constructor-arg value="100" type="int" />
+ 	   </bean>
+ 	   
+ 	   <bean id="obj3" class="kr.co.softcampus.beans.TestBean" lazy-init="true">
+ 	   		<constructor-arg value="11.11" type="double" />
+ 	   </bean>
+ 	   
+ 	   <!-- 타입을 명시하지 않으면 type의 기본값은 String으로 들어간다. -->
+ 	   <bean id="obj4" class="kr.co.softcampus.beans.TestBean" lazy-init="true">
+ 	   		<!-- <constructor-arg value="test" /> -->
+ 	   		<constructor-arg value="test" type="String" />
+ 	   </bean>
+ 	   
+ 	   <bean id="obj5" class="kr.co.softcampus.beans.TestBean" lazy-init="true">
+ 	   		<constructor-arg value="200" type="int"></constructor-arg>
+ 	   		<constructor-arg value="22.22" type="double"></constructor-arg>
+ 	   		<constructor-arg value="안녕하세요" type="java.lang.String"></constructor-arg>
+ 	   </bean>
+ 	   
+ 	   <!-- arg가 들어갈 순서에 맞게 생성자를 우선 찾고 없으면 -> 순서와 관계 없이 arg가 들어갈 수 있는 생성자를 찾고 없으면 -> 에러 발생 -->
+ 	   <bean id="obj6" class="kr.co.softcampus.beans.TestBean" lazy-init="true">
+ 	   		<constructor-arg value="안녕하세요" type="java.lang.String" />
+ 	   		<constructor-arg value="300" type="int" />
+ 	   		<constructor-arg value="33.33" type="double" />
+ 	   </bean>
+ 	   
+ 	   <!-- index를 주면 순서에 맞게 들어갈 수 있다. -->
+ 	   <bean id="obj7" class="kr.co.softcampus.beans.TestBean" lazy-init="true">
+ 	   		<constructor-arg value="44.44" index="1" />
+ 	   		<constructor-arg value="44" type="int" index="0" />
+ 	   		<constructor-arg value="안녕하세요" index="2" />
+ 	   </bean>
+ 	   
+ 	   <bean id="obj8" class="kr.co.softcampus.beans.TestBean2" lazy-init="true">
+ 	   		<constructor-arg index="0">
+ 	   			<bean class="kr.co.softcampus.beans.DataBean" />
+ 	   		</constructor-arg>
+ 	   		<constructor-arg type="DataBean">
+ 	   			<bean class="kr.co.softcampus.beans.DataBean" />
+ 	   		</constructor-arg>
+ 	   </bean>
+ 	   
+ 	   <!-- <bean id="data_bean" class="kr.co.softcampus.beans.DataBean" lazy-init="true" scope="singleton" /> -->
+ 	   <bean id="data_bean" class="kr.co.softcampus.beans.DataBean" scope="prototype" />
+ 	   
+ 	   <bean id="obj9" class="kr.co.softcampus.beans.TestBean2" lazy-init="true">
+ 	   		<constructor-arg ref="data_bean" />
+ 	   		<constructor-arg ref="data_bean" />
+ 	   </bean>
+</beans>
