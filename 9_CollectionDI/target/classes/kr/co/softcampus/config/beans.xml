@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+	   <bean id="t1" class="kr.co.softcampus.beans.TestBean">
+	   		<!-- 제네릭이 String 인 List -->
+	   		<property name="list1">
+	   			<list>
+	   				<value>문자열1</value>
+	   				<value>문자열2</value>
+	   				<value>문자열3</value>
+	   			</list>
+	   		</property>
+	   		
+	   		<property name="list2">
+	   			<list>
+	   				<value>23</value>
+	   				<value>30</value>
+	   				<value>50</value>
+	   				<value>77</value>
+	   			</list>
+	   		</property>
+	   		
+	   		<property name="list3">
+	   			<list>
+		   			<bean class="kr.co.softcampus.beans.DataBean"></bean>
+		   			<bean class="kr.co.softcampus.beans.DataBean"></bean>
+		   			<bean class="kr.co.softcampus.beans.DataBean"></bean>
+	   				<ref bean="data_bean" />
+	   				<ref bean="data_bean" />
+	   			</list>
+	   		</property>
+	   		
+	   		<property name="set1">
+	   			<set>
+	   				<value>문자열1</value>
+	   				<value>문자열1</value>
+	   				<value>문자열1</value>
+	   				<value>문자열2</value>
+	   				<value>문자열2</value>
+	   				<value>문자열3</value>
+	   				<value>문자열3</value>
+	   			</set>
+	   		</property>
+	   		
+	   		<property name="set2">
+	   			<set>
+	   				<value type="int">100</value>
+	   				<value type="int">100</value>
+	   				<value type="int">100</value>
+	   				<value type="int">200</value>
+	   				<value type="int">300</value>
+	   			</set>
+	   		</property>
+	   		
+	   		<property name="set3">
+	   			<set>
+	   				<bean class="kr.co.softcampus.beans.DataBean"></bean>
+	   				<bean class="kr.co.softcampus.beans.DataBean"></bean>
+	   				<bean class="kr.co.softcampus.beans.DataBean"></bean>
+	   				<!-- 스프링에서 set에 객체를 참조하여 주입하는 경우 같은 id를 참조하면, prototype이라 하더라도 가은 객체로 인지하고 새로운 객체를 만들지 않는다 -> 따라서 새로운 객체를 임의로 생성해서 넣거나, id를 달리해줘야한다. -->
+	   				<ref bean="data_bean" />
+	   				<ref bean="data_bean" />
+	   				<ref bean="data_bean1" />
+	   				<ref bean="data_bean1" />
+	   			</set>
+	   		</property>
+	   		
+	   		<property name="set4">
+	   			<set>
+	   				<value type="boolean">true</value>
+	   				<value type="boolean">true</value>
+	   				<value type="boolean">false</value>
+	   			</set>
+	   		</property>
+			
+			
+			<!-- map -->
+			<property name="map1">
+				<map>
+					<entry key="a1" value="문자열" />
+					<entry key="a2" value="100" value-type="int" />
+					<entry key="a3">
+						<bean class="kr.co.softcampus.beans.DataBean" />
+					</entry>
+					<entry key="a4" value-ref="data_bean1" />
+					<entry key="a5">
+						<list>
+							<value>String1</value>
+							<value>String2</value>
+							<value>String3</value>
+						</list>
+					</entry>
+					<entry key="a6">
+						<set>
+							<value type="int">200</value>
+							<value type="int">200</value>
+							<value type="int">200</value>
+						</set>
+					</entry>
+				</map>
+			</property>
+			
+			
+			<!-- property -->
+			<!-- property 에는 문자만 저장 가능하다. -->
+			<property name="prop1">
+				<props>
+					<prop key="p1">문자열1</prop>
+					<prop key="p2">문자열2</prop>
+					<prop key="p3">문자열3</prop>
+				</props>
+			</property>
+	   </bean>
+	   
+	   <bean id="data_bean" class="kr.co.softcampus.beans.DataBean" scope="prototype" />
+	   <bean id="data_bean1" class="kr.co.softcampus.beans.DataBean" scope="singleton" />
+</beans>
