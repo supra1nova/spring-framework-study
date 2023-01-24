@@ -1,6 +1,5 @@
 package kr.co.softcampus.main;
 
-import kr.co.softcampus.beans.HelloWorldEn;
 import kr.co.softcampus.beans.HelloWorldKo;
 
 public class MainClass {

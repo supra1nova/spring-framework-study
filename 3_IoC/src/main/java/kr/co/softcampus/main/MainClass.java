@@ -60,5 +60,6 @@ public class MainClass {
 		System.out.printf("t2 : %s\n", t1);
 		TestBean t2 = ctx.getBean("t2", TestBean.class);
 		System.out.printf("t2 : %s\n", t2);
+		ctx.close();
 	}
 }
