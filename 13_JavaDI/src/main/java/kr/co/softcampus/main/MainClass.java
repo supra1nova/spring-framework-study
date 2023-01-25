@@ -41,6 +41,8 @@ public class MainClass {
 		System.out.printf("xml4.data1 : %s\n", xml4.getData1());
 		System.out.printf("xml4.data2 : %s\n", xml4.getData2());
 		
+		ctx1.close();
+		
 		System.out.println("========================================");
 		
 		AnnotationConfigApplicationContext ctx2 = new AnnotationConfigApplicationContext(BeanConfigClass.class);
