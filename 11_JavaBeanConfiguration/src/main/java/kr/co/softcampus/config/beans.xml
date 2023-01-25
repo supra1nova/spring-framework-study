@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					  http://www.springframework.org/schema/beans/spring-beans.xsd">
+	   
+	   <bean id="xml1" class="kr.co.softcampus.beans.TestBean1" />
+	   <bean id="xml2" class="kr.co.softcampus.beans.TestBean2" lazy-init="true" />
+
+	   <!-- scope 에 prototype으로 설정되면, beans.xml 을 로드해도 객체를 생성하지 않고, 실제 getBean() 메서드를 통해 호출되어야 객체가 생성된다. -->
+	   <!-- 즉, lazy-init과 동일하게 getBean()되어 호출되는 시점에 객체를 생성한다는 뜻 -->
+	   <bean id="xml3" class="kr.co.softcampus.beans.TestBean3" scope="prototype" />
+	   
+	   <!-- 빈이 1개만 있는 경우 id 없이 클래스 타입만 지정가능 -->
+	   <bean class="kr.co.softcampus.beans.TestBean4" />
+	   
+	   <!-- 동일한 빈 클래스가 컨텍스에 있다면 에러가 발생하지만, primary를 줌으로써 우선순위를 줘서 에러를 피할 수 있다. -->
+	   <bean class="kr.co.softcampus.beans.TestBean4" primary="true" />
+</beans>
