@@ -4,8 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Component;
-
 import kr.co.softcampus.beans.TestBean1;
 import kr.co.softcampus.beans.TestBean2;
 import kr.co.softcampus.beans2.TestBean4;
