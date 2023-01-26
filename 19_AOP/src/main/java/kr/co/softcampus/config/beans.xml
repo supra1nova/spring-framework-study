@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   					   http://www.springframework.org/schema/context
+	   					   http://www.springframework.org/schema/context/spring-context.xsd
+	   					   http://www.springframework.org/schema/aop
+	   					   http://www.springframework.org/schema/aop/spring-aop.xsd">
+	   <context:annotation-config />
+	   <context:component-scan base-package="kr.co.softcampus.beans" />
+	   
+	   
+	   <bean id="xml1" class="kr.co.softcampus.beans.TestBean" />
+	   
+	   <bean id="advisor1" class="kr.co.softcampus.advisor.Advisor" />
+
+		<aop:config>
+			<aop:aspect ref="advisor1">
+				<!-- 모든 package, 모든 클래스 관계 없이 method1이라는 메서드가 호출시 작동 -->
+				<aop:pointcut id="point1" expression="execution(* method1())" />
+				<!-- pointcut에서 참조하고 있는 관심사(method1)가 호출되면, aspect ref로 참조하고 있는 class의 method인 beforeMethod를 호출 -->
+				<aop:before method="beforeMethod" pointcut-ref="point1" />
+				<aop:after method="afterMethod" pointcut-ref="point1"/>
+				<aop:around method="aroundMethod" pointcut-ref="point1" />
+				<aop:after-returning method="afterReturningMethod" pointcut-ref="point1"/>
+				<aop:after-throwing method="afterThrowingMethod" pointcut-ref="point1" throwing="e1"/>
+			</aop:aspect>
+		</aop:config>
+	   
+</beans>
